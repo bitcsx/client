@@ -17,6 +17,9 @@
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'experience' }">求职经验</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" :to="{ name: 'userprofile' }">个人信息</router-link>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">

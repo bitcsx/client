@@ -6,6 +6,7 @@ import RegisterView from '../views/RegisterView'
 import LoginView from '../views/LoginView'
 import NotFoundView from '../views/NotFoundView'
 import WriteView from '../views/WriteView'
+import UserProfileView from '../views/UserProfileView'
 const routes = [
   {
     path: '/',
@@ -41,6 +42,11 @@ const routes = [
     path: '/404',
     name: '404',
     component: NotFoundView
+  },
+  {
+    path: '/userprofile',
+    name: 'userprofile',
+    component: UserProfileView
   },
 ]
 
