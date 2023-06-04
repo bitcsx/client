@@ -1,14 +1,16 @@
 import { createStore } from 'vuex'
-
+import ModuleUser from './user';
 export default createStore({
-  state: {
+  state: {//数据
   },
-  getters: {
+  getters: {//通过计算获得的东西
   },
-  mutations: {
+  mutations: {//对state修改的操作可以放到这里
   },
-  actions: {
+  actions: {//定义对state的操作
   },
-  modules: {
+  modules: {//对state分割
+    user:ModuleUser,
   }
-})
+});
+

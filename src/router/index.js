@@ -19,35 +19,39 @@ const routes = [
     component: JobView
   },
   {
-    path: '/experience',
+    path: '/experience/',
     name: 'experience',
     component: ExperienceView
   },
   {
-    path: '/write',
+    path: '/write/',
     name: 'write',
     component: WriteView
   },
   {
-    path: '/register',
+    path: '/register/',
     name: 'register',
     component: RegisterView
   },
   {
-    path: '/login',
+    path: '/login/',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/404',
+    path: '/404/',
     name: '404',
     component: NotFoundView
   },
   {
-    path: '/userprofile',
+    path: '/userprofile/:userId/',
     name: 'userprofile',
     component: UserProfileView
   },
+  {
+    path:'/:catchAll(.*)',
+    redirect:'/404'
+  }
 ]
 
 const router = createRouter({
