@@ -7,20 +7,22 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <router-link class="nav-link" :to="{ name: 'home' }">首页</router-link>
-                    </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-if="$store.state.user.is_login">
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'job' }">招聘信息</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'experience' }">求职经验</router-link>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <router-link class="nav-link" :to="{ name: 'userprofile',params:{userId:2} }">个人信息</router-link>-->
-<!--                    </li>-->
                 </ul>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-else>
+                <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'login' }">招聘信息</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'login' }">求职经验</router-link>
+                </li>
+              </ul>
                 <ul class="navbar-nav" v-if="!$store.state.user.is_login">
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{ name: 'login' }">登录</router-link>
@@ -48,12 +50,14 @@
 
 <script>
 import {useStore} from 'vuex';
+import router from "@/router";
 export default {
   name: "NavBar",
   setup(){
     const store = useStore();
     const logout = () => {
       store.commit('logout');
+      router.push({ name: 'home'});
       };
       return {
         logout,

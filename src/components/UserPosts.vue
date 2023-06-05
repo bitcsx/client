@@ -4,7 +4,7 @@
             <div v-for="post in posts.posts" :key="post.id">
                 <div class="card single-post">
                     <div class="card-body">
-                        {{ post.content }}
+                        {{ post.description }}
                     </div>
                 </div>
             </div>

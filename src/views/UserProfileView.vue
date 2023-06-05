@@ -2,11 +2,11 @@
   <ContentBase>
     <div class="row">
       <div class="col-3">
-        <UserProfileInfo @follow="follow" @unfollow="unfollow" :user="user" />
-        <WritePosts @submit_post="submit_post" />
+        <UserProfileInfo @follow="follow" @unfollow="unfollow" :user="user"/>
+        <WritePosts @submit_post="submit_post"/>
       </div>
       <div class="col-9">
-        <UserPosts :posts="posts" />
+        <UserPosts :posts="posts"/>
       </div>
     </div>
   </ContentBase>
@@ -16,7 +16,7 @@
 import ContentBase from '../components/ContentBase.vue';
 import UserProfileInfo from '@/components/UserProfileInfo.vue';
 import UserPosts from '@/components/UserPosts.vue';
-import { reactive } from 'vue';
+import {reactive} from 'vue';
 import WritePosts from '@/components/WritePosts.vue';
 import {useRoute} from "vue-router";
 import $ from 'jquery';
@@ -33,7 +33,26 @@ export default {
     const user = reactive({});
     const route = useRoute();
     const userId = route.params.userId;
-    const posts = reactive({});
+    const posts = reactive({
+      // count: 3,
+      // posts: [
+      //   {
+      //     id: 1,
+      //     userId: 1,
+      //     content: "第一条帖子"
+      //   },
+      //   {
+      //     id: 2,
+      //     userId: 1,
+      //     content: "第二条帖子"
+      //   },
+      //   {
+      //     id: 3,
+      //     userId: 1,
+      //     content: "第三条帖子"
+      //   },
+      // ]
+    });
     //const store = useStore();
 
     $.ajax({
@@ -43,7 +62,7 @@ export default {
       data: {
         id: userId,
       },
-      success(resp){
+      success(resp) {
         user.id = resp.id;
         user.token = resp.token;
         user.email = resp.email;
@@ -54,6 +73,18 @@ export default {
         user.is_followed = resp.is_followed;
       }
     });
+
+    $.ajax({
+      url: "http://172.26.96.139:8888/userpost",
+      type: "GET",
+      data: {
+        id: userId,
+      },
+      success(resp) {
+        console.log(resp);
+        posts.posts = resp.content;
+      }
+    })
 
     const follow = () => {
       if (user.is_followed) return;
